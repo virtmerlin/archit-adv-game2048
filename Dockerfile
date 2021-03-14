@@ -1,11 +1,20 @@
-FROM alpine:latest
+FROM centos:7
+MAINTAINER The CentOS Project <cloud-ops@centos.org>
+LABEL Vendor="CentOS" \
+      License=GPLv2 \
+      Version=2.4.6-40
+ENV ServerName=web2048-site
 
-MAINTAINER alex <alexwhen@gmail.com> 
+RUN yum -y update && \
+    yum -y install httpd unzip && \
+    yum clean all
 
-RUN apk --update add nginx
+# Install app
+COPY ./code/ /var/www/html/
 
-COPY 2048 /usr/share/nginx/html
+# Config App
+RUN echo "ServerName fargate.training " >> /etc/httpd/conf/httpd.conf
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
