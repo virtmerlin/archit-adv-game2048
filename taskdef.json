@@ -21,6 +21,7 @@
                       "awslogs-group": "/ecs/archit-adv-game2048",
                       "awslogs-region": "us-east-1",
                       "awslogs-stream-prefix": "ecs"
+                    }
                 }
             }
         ],
