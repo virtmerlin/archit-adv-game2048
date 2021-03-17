@@ -225,7 +225,7 @@ button {
     .GameBoard-backgroundCard:before {
       content: '';
       display: block;
-      background: #000;
+      background: #eee;
       border-radius: 1vmin;
       position: absolute;
       top: 4%;
